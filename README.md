@@ -1,4 +1,6 @@
-# Clinic Dashboard
+# Clinic Dashboard (Medley)
+
+> Built in one day by a team of 5 at the **'Sup Build2026 Hackathon** (June 2026), presented as *Medley*.
 
 AI-native clinic dashboard that handles the **first pass** on clinical work so
 doctors can focus on decisions. Staff upload lab results, scans, or a case
@@ -90,7 +92,15 @@ and serves the built UI **and** the API from one FastAPI process on `$PORT`.
   `AUTH_TOKEN` (required); add `OPENAI_API_KEY` / `EXA_API_KEY` for live AI.
 - **Any Docker host** — `docker build -t clinic-dashboard . && docker run -p 8000:8000 -e AUTH_TOKEN=... clinic-dashboard`
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for the full env-var list and verification steps.
+| Env var | Required | Purpose |
+|---|---|---|
+| `AUTH_TOKEN` | yes | Access token for the sign-in screen (`AUTH_ENABLED=true`) |
+| `OPENAI_API_KEY` | no | Live X-ray reads and the patient-ID scanner |
+| `OPENAI_MODEL` / `OPENAI_VISION_MODEL` | no | Override the reasoning and vision models |
+| `EXA_API_KEY` | no | Live differential-evidence lookup |
+| `UPLOAD_DIR` | no | Upload storage path (Render uses `/tmp/clinic-dashboard/uploads`) |
+
+Verify a deploy with `curl https://<host>/health`.
 
 ## ⚠️ PHI / safety
 
